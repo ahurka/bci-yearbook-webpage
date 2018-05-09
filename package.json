@@ -1,0 +1,26 @@
+{
+  "name": "bci-yearbook-webpage",
+  "version": "1.0.0",
+  "description": "A website for sharing resources of The Bloor Banner yearbook.",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahurka/bci-yearbook-webpage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahurka/bci-yearbook-webpage/issues"
+  },
+  "homepage": "https://github.com/ahurka/bci-yearbook-webpage#readme",
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "^1.1.4"
+  }
+}
