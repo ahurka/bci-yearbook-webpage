@@ -7,11 +7,12 @@ class SelectorBar extends Component {
     super(props);
 
     this.state = {
-      selected: props.options.map(entry => {
-          return {value: entry, label: entry};
-      }),
+      options: [],
+      selected: [],
       gradeEnable: true
     }
+
+    this.mapSelectOption = this.mapSelectOption.bind(this);
 
     this.enableGrade = this.enableGrade.bind(this);
     this.disableGrade = this.disableGrade.bind(this);
@@ -22,7 +23,12 @@ class SelectorBar extends Component {
 
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
 
+    this.loadHomeforms = this.loadHomeforms.bind(this);
     this.getParameterFlags = this.getParameterFlags.bind(this);
+  }
+
+  mapSelectOption(option) {
+    return {value: option, label: option};
   }
 
   enableGrade() {
@@ -49,11 +55,7 @@ class SelectorBar extends Component {
 
   selectAllHomeforms() {
     let newState = this.state;
-    newState.selected = this.props.options.map(
-        homeform => {
-            return {value: homeform, label: homeform};
-        }
-    );
+    newState.selected = this.state.options.map(this.mapSelectOption);
 
     this.setState(newState);
   }
@@ -75,7 +77,7 @@ class SelectorBar extends Component {
   getParameterFlags() {
     let params = [];
 
-    for (var i = 0; i < this.props.options.length; i++) {
+    for (var i = 0; i < this.state.options.length; i++) {
       params.push(false);
     }
 
@@ -83,14 +85,22 @@ class SelectorBar extends Component {
       return params;
     }
 
-    for (var i = 0; i < this.state.selected.length; i++) {
+    for (i = 0; i < this.state.selected.length; i++) {
       let selectedParam = this.state.selected[i].value;
-      let paramIndex = this.props.options.indexOf(selectedParam);
+      let paramIndex = this.state.options.indexOf(selectedParam);
 
       params[paramIndex] = true;
     }
 
     return params;
+  }
+
+  loadHomeforms(homeformsList) {
+    let newState = this.state;
+    newState.options = homeformsList;
+    newState.selected = homeformsList.map(this.mapSelectOption);
+
+    this.setState(newState);
   }
 
   render() {
@@ -111,11 +121,7 @@ class SelectorBar extends Component {
           <div className="homeformSelector">
             <Select multi={true}
                     closeOnSelect={false}
-                    options={this.props.options.map(
-                                 homeform => {
-                                     return {value: homeform, label: homeform};
-                                 }
-                    )}
+                    options={this.state.options.map(this.mapSelectOption)}
                     value={this.state.selected}
                     onChange={this.handleSelectionChange}
             />       
