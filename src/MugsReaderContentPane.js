@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import SelectorBar from './SelectorBar.js';
+import TextIOPane from './TextIOPane.js';
 import IndexSelector from './IndexSelector.js';
+import SelectorBar from './SelectorBar.js';
 
 class MugsReaderContentPane extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class MugsReaderContentPane extends Component {
 
     this.state = {
       selectors: {
+        index: React.createRef(),
         grade9: React.createRef(),
         grade10: React.createRef(),
         grade11: React.createRef(),
@@ -17,6 +19,7 @@ class MugsReaderContentPane extends Component {
     };
 
     this.reloadHomeforms = this.reloadHomeforms.bind(this);
+    this.collectSearchParams = this.collectSearchParams.bind(this);
   }
 
   reloadHomeforms(homeformsLists) {
@@ -30,10 +33,28 @@ class MugsReaderContentPane extends Component {
     }
   }
 
+  collectSearchParams() {
+    let searchData = {
+      indexName: this.state.selectors.index.current.getCurrentIndex(),
+      params: [
+        this.state.selectors.grade9.current.getParameterFlags(),
+        this.state.selectors.grade10.current.getParameterFlags(),
+        this.state.selectors.grade11.current.getParameterFlags(),
+        this.state.selectors.grade12.current.getParameterFlags(),
+        this.state.selectors.other.current.getParameterFlags()
+      ]
+    };
+
+    return searchData;
+  }
+
   render() {
     return (
       <div>
-        <IndexSelector onChange={this.reloadHomeforms}/>
+        <IndexSelector onChange={this.reloadHomeforms}
+                       ref={this.state.selectors.index}
+        />
+        <TextIOPane collectSearchParams={this.collectSearchParams}/>
         <ul>
           <SelectorBar name="Grade 9"
                        ref={this.state.selectors.grade9}

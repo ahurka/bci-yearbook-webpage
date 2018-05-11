@@ -81,10 +81,6 @@ class SelectorBar extends Component {
       params.push(false);
     }
 
-    if (!this.state.enabled) {
-      return params;
-    }
-
     for (i = 0; i < this.state.selected.length; i++) {
       let selectedParam = this.state.selected[i].value;
       let paramIndex = this.state.options.indexOf(selectedParam);
@@ -92,7 +88,10 @@ class SelectorBar extends Component {
       params[paramIndex] = true;
     }
 
-    return params;
+    return {
+      grade: this.state.gradeEnable,
+      homeforms: params
+    };
   }
 
   loadHomeforms(homeformsList) {
@@ -106,7 +105,7 @@ class SelectorBar extends Component {
   render() {
     return (
       <div className="selectorBar">
-        <div className="textLabel"
+        <div className="divButton"
              onClick={this.toggleGradeEnable}
         >
           {this.props.name}

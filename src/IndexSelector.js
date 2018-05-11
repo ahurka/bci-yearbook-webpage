@@ -13,6 +13,8 @@ class IndexSelector extends Component {
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
 
+    this.getCurrentIndex = this.getCurrentIndex.bind(this);
+
     this.state = {
       indexChoices: [],
       currentIndex: ""
@@ -70,6 +72,10 @@ class IndexSelector extends Component {
 
   handleFileChange(e) {
     this.fetchHomeforms(e.value);
+  }
+
+  getCurrentIndex() {
+    return this.state.currentIndex;
   }
 
   render() {
