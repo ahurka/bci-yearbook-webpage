@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
+
 import 'react-select/dist/react-select.css';
 
 class IndexSelector extends Component {

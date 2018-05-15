@@ -1,0 +1,17 @@
+
+
+.selectorBar {
+  display: flex;
+  flex-direction: row;
+
+  background-color: rgb(160, 160, 160);
+}
+
+.selectorBar * {
+  margin-left: 2px;
+}
+
+.selectorBar #gradeSelector {
+  margin-left: -2px;
+  width: 65px;
+}

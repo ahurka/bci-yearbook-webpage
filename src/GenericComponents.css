@@ -1,0 +1,66 @@
+html {
+  height: 1vh;
+}
+
+body {
+  height: 1vh;
+}
+
+/*
+ * Vertical and horizontal whitespace to separate components
+ */
+.divider {
+  height: 10px;
+}
+
+/*
+ * A custom styled button, built within a div element.
+ * Acts as a button, but with a solid background colour and sharp corners to
+ * match the style of the rest of the project.
+ */
+.divButton {
+  background-color: rgb(120, 120, 120);
+  font-family: 'Aleo';
+
+  /* Static component height required for text to be centered. */
+  height: 5vh;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/*
+ * The text within the custom button, which should reside at the center of the
+ * button in both X and Y dimensions.
+ */
+.divButton p {
+  text-align: center;
+  margin: 0px;
+
+  /* Vertically center text */
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*
+ * Darken background to denote when the user mouses over the button.
+ * Helps distinguish between divButtons with no space between them.
+ */
+.divButton:hover {
+  background-color: rgb(100, 100, 100);
+}
+
+/*
+ * Text colour is further from the button colour when the button is toggled.
+ */
+.divButton[data-selected=true] {
+  color: rgb(240, 240, 240);
+}
+
+/*
+ * Text colour is closer to the button colour when the button is not toggled.
+ */
+.divButton[data-selected=false] {
+  color: rgb(180, 180, 180);
+}

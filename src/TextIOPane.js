@@ -121,13 +121,13 @@ class TextIOPane extends Component {
         charCode |= (1 << (i % 8));
       }
 
-      if (i % 8 == 7) {
+      if (i % 8 === 7) {
         paramString += String.fromCharCode(charCode);
         charCode = 0;
       }
     }
 
-    if (i % 8 != 0) {
+    if (i % 8 !== 0) {
       paramString += String.fromCharCode(charCode);
     }
 
@@ -173,11 +173,12 @@ class TextIOPane extends Component {
           />
         </div>
         <div className="textIOUtils">
-          <div className="searchForm"> 
+          <div className="searchForm">
             <div className="divButton"
+                 data-selected={true}
                  onClick={this.submitSearchForm}>
-              Search
-            </div>
+              <p>Search</p>
+	    </div>
             <div className="labelledCheckbox">
               <input id="grade"
                      type="checkbox"
@@ -193,10 +194,11 @@ class TextIOPane extends Component {
               <label>Report Homeform</label>
             </div>
           </div>
-            <div className="divButton"
-                 onClick={this.clearTextPanes}>
-              Clear
-            </div>
+          <div className="divButton"
+               data-selected={true}
+               onClick={this.clearTextPanes}>
+            <p>Clear</p>
+          </div>
         </div>
       </div>
     );

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
+import './SelectorBar.css';
+import './GenericComponents.css';
+
 class SelectorBar extends Component {
   constructor(props) {
     super(props);
@@ -106,39 +109,29 @@ class SelectorBar extends Component {
     return (
       <div className="selectorBar">
         <div className="divButton"
+             id="gradeSelector"
+             data-selected={this.state.gradeEnable}
              onClick={this.toggleGradeEnable}
         >
-          {this.props.name}
+          <p>{this.props.name}</p>
         </div>
-        <div className="selectorContent">
-          <div className="gradeSelector">
-            <input type="checkbox"
-                   checked={this.state.gradeEnable}
-                   onChange={this.toggleGradeEnable}
-            />
-          </div>
-          <div className="homeformSelector">
-            <Select multi={true}
-                    closeOnSelect={false}
-                    options={this.state.options.map(this.mapSelectOption)}
-                    value={this.state.selected}
-                    onChange={this.handleSelectionChange}
-            />       
-          </div>
-          <div className="selectorUtils">
-	    <div className="buttonFrame">
-              <button className="selectorEnableAll"
-                      type="button"
-                      onClick={this.selectAllHomeforms}
-	      >Select All</button>
-            </div>
-	    <div className="buttonFrame">
-              <button className="selectorDisableAll"
-                      type="button"
-                      onClick={this.deselectAllHomeforms}
-	      >Clear</button>
-            </div>
-          </div>
+        <Select multi={true}
+                closeOnSelect={false}
+                options={this.state.options.map(this.mapSelectOption)}
+                value={this.state.selected}
+                onChange={this.handleSelectionChange}
+        />       
+        <div className="divButton"
+             data-selected={true}
+             onClick={this.selectAllHomeforms}
+        >
+          <p>Select All</p>
+        </div>
+        <div className="divButton"
+             data-selected={true}
+             onClick={this.deselectAllHomeforms}
+        >
+          <p>Clear</p>
         </div>
       </div>
     );
